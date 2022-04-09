@@ -29,6 +29,7 @@ Algoritmo Ahorcado
 FinAlgoritmo
 
 Subproceso jugarAhorcadoDosJugadores()
+	
 	Definir palabraOculta como caracter;
 	Definir tamanio como entero;
 	Escribir "Jugador 1 elija una palabra";
@@ -80,6 +81,7 @@ FinSubproceso
 	inicializarPalabraAdivinar(palabraOculta,arregloPalabraOculta,arregloPalabraOcultaParcial,tamanio);
 	inicializarLetrasYaElegidas(letrasYaElegidas);
 	Mientras (acerto == Falso Y juegoTerminado == Falso) Hacer
+		limpiar pantalla;
 		Escribir "";
 		letra <- elegirUnaLetra(letrasYaElegidas);
 		Si verificarAcierto(letra,arregloPalabraOculta,arregloPalabraOcultaParcial,tamanio)== Verdadero Entonces
