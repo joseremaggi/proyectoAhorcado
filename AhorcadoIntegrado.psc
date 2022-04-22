@@ -81,7 +81,6 @@ Subproceso jugarAhorcadoDosJugadores()
 	tamanio <- Longitud(palabraOculta);
 	escribir "tamanio",tamanio;
 	jugarAhorcado(palabraOculta,tamanio);
-	Escribir palabraOculta;
 FinSubproceso
 
 Subproceso palabraOculta <- elegirPalabra()
@@ -125,15 +124,18 @@ FinSubproceso
 
 	inicializarPalabraAdivinar(palabraOculta,arregloPalabraOculta,arregloPalabraOcultaParcial,tamanio);
 	inicializarLetrasYaElegidas(letrasYaElegidas);
-	Limpiar Pantalla;
 	Mientras (acerto == Falso Y juegoTerminado == Falso) Hacer
-		limpiar pantalla;
+		Escribir "";
+		mostrarPalabraOcultaParcial(arregloPalabraOcultaParcial,tamanio);
+		Escribir "";
+		mostrarError(error, palabraOculta);
 		Escribir "";
 		letra <- elegirUnaLetra(letrasYaElegidas,tamanio);
 		Si verificarAcierto(letra,arregloPalabraOculta,arregloPalabraOcultaParcial,tamanio)== Verdadero Entonces
 			Si ganoJugador(palabraOculta,arregloPalabraOculta,arregloPalabraOcultaParcial,tamanio) == Verdadero Entonces
 				escribir "gano";
 				acerto <- Verdadero;
+				esperar 3 segundos;
 			SiNo
 				mostrarPalabraOcultaParcial(arregloPalabraOcultaParcial,tamanio);
 				
@@ -148,7 +150,7 @@ FinSubproceso
 				mostrarPalabraOcultaParcial(arregloPalabraOcultaParcial,tamanio);
 			FinSi
 		FinSi
-		
+		Limpiar Pantalla;
 	FinMientras
     FinSubproceso
 
@@ -158,6 +160,7 @@ Subproceso acierto <- verificarAcierto(letra,arregloPalabraOculta,arregloPalabra
 	Definir i como Entero;
 	Definir acierto como Logico;
 	acierto<- Falso;
+	i<- 0;
 	Para i<- 0 hasta tamanio con paso 1 Hacer
 		Si letra == arregloPalabraOculta[i] Entonces
 			arregloPalabraOcultaParcial[i] <- letra;
@@ -235,9 +238,9 @@ Subproceso letra <- elegirUnaLetra(letrasYaElegidas Por Referencia,tamanio)
 		Escribir "";
 		Para i<- 0 hasta 27 con paso 1 Hacer
 			Si letrasYaElegidas[i] <> "_" Entonces
-				Escribir sin saltar "|";
+				Escribir sin saltar " ";
 				Escribir sin saltar letrasYaElegidas[i];
-				Escribir sin saltar "|";
+				Escribir sin saltar " ";
 				
 			FinSi
 		FinPara
@@ -324,6 +327,8 @@ Segun error Hacer
 		Escribir "ESTAS AHORCADO.....!!!!!!!";
 		Escribir " EL JUEGO HA FINALIZADO.!!";
 		Escribir "LA PALABRA ERA: ",palabraOculta;
+		Esperar 3 Segundos;
+		Limpiar Pantalla;
 	FinSegun
 FinSubProceso
 
